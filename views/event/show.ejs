@@ -9,6 +9,12 @@
                 <input type="submit" formaction="/events/<%= event.id %>?_method=DELETE" formmethod="post" value="Delete" class="btn btn-lg btn-danger" title="Delete movie event">
                 <input type="submit" formaction="/events/<%= event.id %>/edit" formmethod="get" value="Edit" class="btn btn-lg btn-success">  
               </form>
+            <% } else if ((user) && (user != event.hostName._id)) { %>
+              <form class="text-center">
+                <input type="submit" formaction="/events/<%= event.id %>/rsvp" formmethod="post" value="Yes" class="btn btn-lg btn-success" title="RSVP Yes" name="rsvp">
+                <input type="submit" formaction="/events/<%= event.id %>/rsvp" formmethod="post" value="No" class="btn btn-lg btn-danger" title="RSVP No" name="rsvp">  
+                <input type="submit" formaction="/events/<%= event.id %>/rsvp" formmethod="post" value="Maybe" class="btn btn-lg btn-info" title="RSVP Maybe" name="rsvp">  
+              </form>
             <% } %>
             </div>
             <!-- Used card model from bootstrap -->

@@ -1,4 +1,6 @@
 const model = require('../models/meetupEvent');
+const rsvpModel = require('../models/rsvp');
+var mongoose = require('mongoose');
 
 // /GET stories: send all stories to user
 
@@ -145,4 +147,23 @@ exports.delete = (req, res, next) =>
     })
     .catch(err => next(err))
 };
+
+exports.rsvp = (req, res, next) =>
+{
+    let id = req.params.id;
+
+    let rsvpItem = new rsvpModel({
+        status: req.body.rsvp,
+        hostName: req.session.user,
+        event: new mongoose.Types.ObjectId(id),
+    });
+    rsvpItem.save()
+    .then((event) =>
+    {
+        console.log(event);
+        req.flash("success", "RSVP status set to " + req.body.rsvp + "!")
+        return res.redirect('/events/' + id)
+    })
+    .catch((err) => next(err))
+}
 
