@@ -34,6 +34,30 @@
     <% } else { %>
         <h3>You don't have any Meetups. <a href="/events/new" class="link-hov-line">Create one now!</a></h3>
     <% } %>
+    <br>
+    <% if (rsvps.length > 0) { %>
+     <h3>Your RSVPs</h3>
+     <table class="table text-center shadow p-3 mb-5 rounded">
+        <thead class="bg-meetup">
+            <tr>
+                <th class="h3">Event</th>
+                <th class="h3">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% rsvps.forEach(rsvp => { %>
+                <tr class="border border-bottom">
+                    <td>
+                        <a href="/events/<%= rsvp.event._id %>" class="link-hov-line"><%= rsvp.event.title %></a>
+                    </td>
+                    <td>
+                        <p><%= rsvp.status %></p>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <% } %>
     
 </div>
 <%- include('../partials/footer.ejs')%>

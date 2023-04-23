@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Event = require("../models/meetupEvent");
+const Rsvp = require("../models/rsvp");
 
 exports.new = (req, res) => 
 {
@@ -71,11 +72,12 @@ exports.profile = (req, res, next) =>
 {
   let id = req.session.user;
   // using all promises and order doesn't matter instead of chaining
-  Promise.all([User.findById(id), Event.find({ hostName: id })])
+  Promise.all([User.findById(id), Event.find({ hostName: id }), Rsvp.find({hostName: id}).populate('event')])
     .then((results) => 
     {
-      const [user, events] = results;
-      res.render("./user/profile", { user, events });
+      const [user, events, rsvps] = results;
+      console.log(user, events, rsvps);
+      res.render("./user/profile", { user, events, rsvps });
     })
     .catch((err) => next(err));
 };
