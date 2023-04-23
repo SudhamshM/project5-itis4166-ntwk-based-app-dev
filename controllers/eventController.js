@@ -157,13 +157,21 @@ exports.rsvp = (req, res, next) =>
         hostName: req.session.user,
         event: new mongoose.Types.ObjectId(id),
     });
-    rsvpItem.save()
+
+    // find and update rsvp in db, otherwise create with upsert
+    let query = {event: rsvpItem.event, hostName: rsvpItem.hostName};
+    let update = {status: rsvpItem.status};
+    let options = {upsert: true}
+
+    rsvpModel.findOneAndUpdate(query, update, options)
     .then((event) =>
     {
-        console.log(event);
-        req.flash("success", "RSVP status set to " + req.body.rsvp + "!")
+        req.flash("success", "RSVP status set to " + event.status + "!")
         return res.redirect('/events/' + id)
     })
-    .catch((err) => next(err))
+    .catch((err) =>
+    {
+        return next(err);
+    })
 }
 
