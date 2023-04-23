@@ -30,6 +30,7 @@
                   <li class="list-group-item"><strong>Start Time: </strong> <%= (new Date(event.startTime)).toLocaleString() %></li>
                   <li class="list-group-item"><strong>End Time: </strong> <%= (new Date(event.endTime)).toLocaleString() %></li>
                   <li class="list-group-item"><strong>Location: </strong> <%= event.location %></li>
+                  <li class="list-group-item"><strong>Number of RSVPS: </strong><%= rsvpCount %></li>
                 </ul>
                 <div class="card-body">
                   <a href="https://www.youtube.com/results?search_query=<%= encodeURIComponent(event.title) %>+trailer" target="_blank" class="card-link">Watch trailer</a>

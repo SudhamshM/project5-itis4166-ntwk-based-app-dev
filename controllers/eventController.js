@@ -55,23 +55,26 @@ exports.create = (req, res, next) =>
 exports.show = (req, res, next) =>
 {
     let id = req.params.id;
-    model.findById(id).populate('hostName')
-    .then(
-        (event) => {
-            if (event)
-            {
-                res.render('./event/show', {event})
-            }
-            else
-            {
-                let err = new Error("Cannot find event with id " + id);
-                err.status = 404;
-                next(err);
-            }
-}
+    let rsvpCount = 0;
+    Promise.all([model.findById(id).populate('hostName'), rsvpModel.find({event: id})])
+    .then((results) =>
+    {
+        const [event, rsvps] = results;
+        if (event)
+        {
+            rsvps.forEach((rsvp) => rsvp.status === 'Yes' ? rsvpCount++ : null)
+            res.render('./event/show', {event, rsvpCount})
+        }
+        else
+        {
+            let err = new Error("Cannot find event with id " + id);
+            err.status = 404;
+            next(err);
+        }
+        
+    }
     )
     .catch(err => next(err))
-    
 };
 
 exports.edit = (req, res, next) =>
@@ -166,7 +169,7 @@ exports.rsvp = (req, res, next) =>
     rsvpModel.findOneAndUpdate(query, update, options)
     .then((event) =>
     {
-        req.flash("success", "RSVP status set to " + event.status + "!")
+        req.flash("success", "RSVP status set to " + req.body.rsvp + "!")
         return res.redirect('/events/' + id)
     })
     .catch((err) =>
