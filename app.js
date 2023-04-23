@@ -23,7 +23,7 @@ let host = 'localhost';
 // acquiring db auth credentials from environment variable
 const auth = process.env.AUTH || undefined
 
-let url = 'mongodb+srv://' + auth + '@cluster0.g4hljaj.mongodb.net/nbad-project4?retryWrites=true&w=majority'
+let url = 'mongodb+srv://' + auth + '@cluster0.grause1.mongodb.net/nbad-project5?retryWrites=true&w=majority'
 app.set('view engine', 'ejs');
 
 // connect to mongodb
@@ -41,10 +41,10 @@ mongoose.connect(url)
 //mount middleware
 app.use(
     session({
-        secret: "jpoj02ghiewqpqig2Alh4",
+        secret: "lH34ugoigz#wg4",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb+srv://' + auth + '@cluster0.g4hljaj.mongodb.net/nbad-project4?retryWrites=true&w=majority'}),
+        store: new MongoStore({mongoUrl: 'mongodb+srv://' + auth + '@cluster0.grause1.mongodb.net/nbad-project5?retryWrites=true&w=majority'}),
         cookie: {maxAge: 60 * 60 * 1000}
         })
 );

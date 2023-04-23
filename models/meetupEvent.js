@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const express = require('express');
-
-const app = express();
 
 const meetupSchema = new Schema(
     {
