@@ -17,3 +17,16 @@ div.navbar-nav a:hover
 {
     background-color: #f3d405;
 }
+
+/* Expand table on profile page on hover */
+.table
+{
+    transition: transform 0.2s ease-in-out;
+}
+
+.table:hover
+{
+    transform: scale(1.05);
+    position: relative;
+    z-index: 1;
+}
