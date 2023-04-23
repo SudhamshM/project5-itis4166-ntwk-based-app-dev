@@ -1,0 +1,41 @@
+
+<%- include('../partials/header.ejs')%>
+<h1 class="text-center">Profile of <em><%= user.firstName + ' ' + user.lastName %></em></h1>
+<div class="container w-75 p-5">
+    <% if (events.length > 0) { %>
+        <h3>Your Meetups</h3>
+        <table class="table text-center shadow p-3 mb-5 rounded">
+            <thead class="bg-meetup">
+                <tr>
+                    <th class="h3">Title</th>
+                    <th class="h3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% events.forEach(event => { %>
+                    <tr class="border border-bottom">
+                        <td>
+                            <a href="/events/<%= event._id %>" class="link-hov-line"><%= event.title %></a>
+                        </td>
+                        <td>
+                            <form>
+                            <button type="submit" class="btn btn-danger" formaction="/events/<%= event._id %>?_method=DELETE" formmethod="post" value="Delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <button type="submit" formaction="/events/<%= event._id %>/edit" formmethod="get" class="btn btn-success" value="Edit">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>  
+                        </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <h3>You don't have any Meetups. <a href="/events/new" class="link-hov-line">Create one now!</a></h3>
+    <% } %>
+    
+</div>
+<%- include('../partials/footer.ejs')%>
+
+

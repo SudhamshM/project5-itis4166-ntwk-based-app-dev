@@ -1,0 +1,19 @@
+main
+{
+    min-height: calc(100vh - 160px);
+}
+
+div.navbar-nav a:hover
+{
+    color: white!important;
+}
+
+.link-hov-line:hover
+{
+    text-decoration: none;
+}
+
+.bg-meetup
+{
+    background-color: #f3d405;
+}

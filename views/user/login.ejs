@@ -1,0 +1,27 @@
+
+<%- include('../partials/header.ejs')%>
+<h1 class="text-center">Login</h1>
+<div class="container w-75 p-5">
+    <form action="/users/login" method="post">
+        <div class="form-group p-2">
+          <label for="email">Email address</label>
+          <input type="email" autocomplete="none" name="email" class="form-control" required id="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group p-2">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" required minlength="5" id="password" placeholder="Password">
+        </div>
+        <div class="row ms-2 me-2">
+          <div class="col-sm-6 px-0 d-flex justify-content-start">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+          <div class="col-sm-6 px-0 d-flex justify-content-end">
+            <span>No account?&nbsp;</span><a href="/users/new" class="link-hov-line">Sign Up!</a>
+          </div>
+      </div>
+      </form>
+    </div>
+    <%- include('../partials/footer.ejs')%>
+
+
