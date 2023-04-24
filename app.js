@@ -41,7 +41,7 @@ mongoose.connect(url)
 //mount middleware
 app.use(
     session({
-        secret: "lH34ugoigz#wg4",
+        secret: "lH34ugoigzAwg4",
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({mongoUrl: 'mongodb+srv://' + auth + '@cluster0.grause1.mongodb.net/nbad-project5?retryWrites=true&w=majority'}),
