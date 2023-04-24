@@ -76,7 +76,6 @@ exports.profile = (req, res, next) =>
     .then((results) => 
     {
       const [user, events, rsvps] = results;
-      console.log(user, events, rsvps);
       res.render("./user/profile", { user, events, rsvps });
     })
     .catch((err) => next(err));

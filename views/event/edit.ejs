@@ -19,7 +19,7 @@
                 <div class="form-group row m-2">
                     <label for="movieEventTitle" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" autocomplete="off" class="form-control" value="<%= event.title %>" id="movieEventTitle" placeholder="Enter title here"
+                        <input type="text" name="title" minlength="2" maxlength="65" autocomplete="off" class="form-control" value="<%= event.title %>" id="movieEventTitle" placeholder="Enter title here"
                             required>
                     </div>
                 </div>
