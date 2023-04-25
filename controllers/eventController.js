@@ -138,8 +138,20 @@ exports.delete = (req, res, next) =>
     {
         if (event)
         {
-            req.flash("success", "Meetup successfully deleted.")
-            return res.redirect('/events');
+            req.flash("success", "Meetup successfully deleted.");
+            // delete any attached RSVPs
+            rsvpModel.find({event: new mongoose.Types.ObjectId(id)})
+            .then((results) =>
+            {
+                results.forEach(result =>
+                    {
+                        console.log("Deleting RSVP:", result.id);
+                        rsvpModel.deleteOne({_id: result.id})
+                        .then(() => res.redirect('/events'))
+                        .catch(err => next(err))
+                    })
+            })
+            .catch(err => next(err))
         }
         else
         {
