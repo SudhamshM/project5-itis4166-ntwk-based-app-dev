@@ -4,7 +4,7 @@ const router = express.Router();
 const controller = require('../controllers/eventController');
 const { fileUpload } = require('../middleware/fileUpload');
 const { isLoggedIn, isAuthor, isViewer } = require('../middleware/auth');
-const { validateId } = require('../middleware/validator');
+const { validateId, validateMeetup, validateResult, getDateInputs } = require('../middleware/validator');
 
 // /GET stories: send all stories to user
 router.get('/', controller.index);
@@ -13,7 +13,7 @@ router.get('/', controller.index);
 router.get('/new', isLoggedIn, controller.new);
 
 // /POST /stories create a new story
-router.post('/', isLoggedIn, fileUpload, controller.create);
+router.post('/', isLoggedIn, fileUpload, getDateInputs, validateMeetup, validateResult, controller.create);
 
 // GET /stories/:id - send details of story with id
 router.get('/:id', validateId, controller.show);
@@ -22,7 +22,7 @@ router.get('/:id', validateId, controller.show);
 router.get('/:id/edit', validateId, isLoggedIn, isAuthor, controller.edit);
 
 // /PUT /stories/:id - edit post with id
-router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, controller.update);
+router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, getDateInputs, validateMeetup, validateResult, controller.update);
 
 // /DELETE /stories/:id - delete post with id
 router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete);

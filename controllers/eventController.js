@@ -83,16 +83,16 @@ exports.edit = (req, res, next) =>
     model.findById(id)
     .then(
         (event) => {
-            if (event)
-            {
-                res.render('./event/edit', {event})
-            }
-            else
-            {
-                let err = new Error("Cannot find event with id " + id);
-                err.status = 404;
-                next(err);
-            }
+                        if (event)
+                        {
+                            res.render('./event/edit', {event})
+                        }
+                        else
+                        {
+                            let err = new Error("Cannot find event with id " + id);
+                            err.status = 404;
+                            next(err);
+                        }
                 }
     )
     .catch(err => next(err))
