@@ -32,7 +32,8 @@ mongoose.connect(url)
         //start the server
         app.listen(port, host, () =>
         {
-            console.log('Server is running on port', port);
+            console.log('Server is running on port', port, ' @', host);
+            console.log('Auth is ', auth);
         })
         
     )
