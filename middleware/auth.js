@@ -58,3 +58,33 @@ exports.isAuthor = (req, res, next) =>
     })
     .catch(err => next(err));
 }
+
+exports.isViewer = (req, res, next) =>
+{
+    let id = req.params.id;
+    Event.findById(id)
+    .then((event) =>
+    {
+        if (event)
+        {
+            console.log("Checking viewer status to RSVP...");
+            if (event.hostName.toHexString() !== req.session.user)
+            {
+                return next();
+            }
+            else
+            {
+                let err = new Error("Only other users are allowed to perform this action.");
+                err.status = 403;
+                return next(err);
+            }
+        }
+        else
+        {
+            let err = new Error('Cannot find a Meetup with id.');
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err => next(err));
+}

@@ -48,7 +48,7 @@
         <% if(errorMessages.length > 0) {%>
             <% errorMessages.forEach(message=>{%>
                 <div class='alert alert-warning alert-dismissible fade show' role="alert">
-                    <%=message%>
+                    <strong><%=message%></strong>
                     <button type="button" class="close btn-close" data-bs-dismiss="alert" aria-label="Close">
                       </button>
                 </div>
@@ -58,7 +58,7 @@
         <% if(successMessages.length > 0) {%>
             <% successMessages.forEach(message=>{%>
                 <div class='alert alert-success alert-dismissible fade show' role="alert">
-                <%=message%>
+                <strong><%=message%></strong>
                 <button type="button" class="close btn-close" data-bs-dismiss="alert" aria-label="Close">
                   </button>
                 </div>
