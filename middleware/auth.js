@@ -70,6 +70,7 @@ exports.isViewer = (req, res, next) =>
             console.log("Checking viewer status to RSVP...");
             if (event.hostName.toHexString() !== req.session.user)
             {
+                console.log("Viewer confirmed.");
                 return next();
             }
             else

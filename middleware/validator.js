@@ -1,4 +1,4 @@
-const {ExpressValidator} = require('express-validator');
+const { ExpressValidator } = require('express-validator');
 const { body, validationResult } = new ExpressValidator(
     {
         isAfterStartDate: async () =>
@@ -75,3 +75,8 @@ exports.validateMeetup = [body('title', 'Title cannot be empty.').notEmpty().tri
                     body('startTime', 'Start time cannot be empty.').isISO8601().trim().escape().toDate().isAfterToday(),
                     body('endTime', 'End time cannot be empty.').isISO8601().trim().escape().toDate().isAfterStartDate()
                 ]
+exports.startRSVPValidation = (req, res, next) =>
+{
+    return next();
+}
+exports.validateRSVP = [body('rsvp', 'RSVP cannot be empty').notEmpty().trim().isIn(["Maybe", "Yes", "No"]).withMessage("RSVP category has to be Yes, No or Maybe.")]

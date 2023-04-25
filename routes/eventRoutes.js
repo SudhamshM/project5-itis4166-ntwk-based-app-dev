@@ -4,7 +4,7 @@ const router = express.Router();
 const controller = require('../controllers/eventController');
 const { fileUpload } = require('../middleware/fileUpload');
 const { isLoggedIn, isAuthor, isViewer } = require('../middleware/auth');
-const { validateId, validateMeetup, validateResult, getDateInputs } = require('../middleware/validator');
+const { validateId, validateMeetup, validateResult, getDateInputs, validateRSVP } = require('../middleware/validator');
 
 // /GET stories: send all stories to user
 router.get('/', controller.index);
@@ -27,6 +27,6 @@ router.put('/:id', validateId, isLoggedIn, isAuthor, fileUpload, getDateInputs, 
 // /DELETE /stories/:id - delete post with id
 router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete);
 
-router.post('/:id/rsvp', validateId, isLoggedIn, isViewer, controller.rsvp)
+router.post('/:id/rsvp', validateId, isLoggedIn, isViewer, validateRSVP, validateResult, controller.rsvp)
 
 module.exports = router;
