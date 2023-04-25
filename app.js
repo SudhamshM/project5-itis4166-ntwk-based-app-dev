@@ -30,10 +30,9 @@ app.set('view engine', 'ejs');
 mongoose.connect(url)
 .then(
         //start the server
-        app.listen(port, host, () =>
+        app.listen(port, () =>
         {
-            console.log('Server is running on port', port, ' @', host);
-            console.log('Auth is ', auth);
+            console.log('Server is running on port', port);
         })
         
     )
