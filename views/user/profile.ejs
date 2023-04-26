@@ -3,7 +3,13 @@
 <h1 class="text-center">Profile of <em><%= user.firstName + ' ' + user.lastName %></em></h1>
 <div class="container w-75 p-5">
     <% if (events.length > 0) { %>
-        <h3>Your Meetups</h3>
+        <div class="p-1 mb-1 d-flex justify-content-between">
+            
+            <h3 class="d-inline">Your Meetups</h3>
+            <a href="/events/new" type="button" class="btn btn-light">
+                <span class="me-2">Create New Meetup</span><i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
         <table class="table text-center shadow p-3 mb-5 rounded">
             <thead class="bg-meetup">
                 <tr>
