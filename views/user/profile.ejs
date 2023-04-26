@@ -15,7 +15,7 @@
                 <% events.forEach(event => { %>
                     <tr class="border border-bottom">
                         <td>
-                            <a href="/events/<%= event._id %>" class="link-hov-line"><%= event.title %></a>
+                            <a href="/events/<%= event._id %>" class="link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"><%= event.title %></a>
                         </td>
                         <td>
                             <form>
@@ -32,7 +32,7 @@
             </tbody>
         </table>
     <% } else { %>
-        <h3>You don't have any Meetups. <a href="/events/new" class="link-hov-line">Create one now!</a></h3>
+        <h3>You don't have any Meetups. <a href="/events/new" class="link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Create one now!</a></h3>
     <% } %>
     <br>
     <% if (rsvps.length > 0) { %>
@@ -48,7 +48,7 @@
             <% rsvps.forEach(rsvp => { %>
                 <tr class="border border-bottom">
                     <td>
-                        <a href="/events/<%= rsvp.event._id %>" class="link-hov-line"><%= rsvp.event.title %></a>
+                        <a href="/events/<%= rsvp.event._id %>" class="link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"><%= rsvp.event.title %></a>
                     </td>
                     <td>
                         <p><%= rsvp.status %></p>

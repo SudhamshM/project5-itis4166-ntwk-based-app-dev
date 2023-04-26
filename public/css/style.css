@@ -10,7 +10,7 @@ div.navbar-nav a:hover
 
 .link-hov-line:hover
 {
-    text-decoration: none;
+    text-decoration-color: #f3d401!important;
 }
 
 .bg-meetup

@@ -5,7 +5,7 @@
         <% if (eventObject[genre]) { %>
            <ul class="ml-3 list-group">
                <% eventObject[genre].forEach(story => { %>
-               <li class="list-group-item list-group-item-action"><a href="/events/<%= story.id %>" class="list-group-item-action"><%= story.title %></a></li>
+               <li class="list-group-item list-group-item-action"><a href="/events/<%= story.id %>" class="link-dark link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover link-hov-line"><%= story.title %></a></li>
                <% }) %>
            </ul>
         <% } else { %>
@@ -15,7 +15,7 @@
     <% if (!Object.keys(eventObject).length) { %>
         <h2 class="text-center">No movies available currently!</h2> 
         <h3 class="text-center">Create your own
-            movie meetup <a href="/events/new" class="link-hov-line">here!</a></h3>
+            movie meetup <a href="/events/new" class="link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">here!</a></h3>
         
     <% } %>
 </div>
