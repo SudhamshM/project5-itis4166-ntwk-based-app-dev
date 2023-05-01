@@ -11,7 +11,10 @@ exports.create = (req, res, next) =>
 {
     let user = new User(req.body);
     user.save()
-    .then((user) => res.redirect("/users/login"))
+    .then((user) => {
+      req.flash("success", "Account created successfully.")
+      return res.redirect("/users/login")
+    })
       .catch((err) => 
       {
         if (err.name === "ValidationError") 
