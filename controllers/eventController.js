@@ -55,15 +55,14 @@ exports.create = (req, res, next) =>
 exports.show = (req, res, next) =>
 {
     let id = req.params.id;
-    let rsvpCount = 0;
-    Promise.all([model.findById(id).populate('hostName'), rsvpModel.find({event: id})])
+    // check all Yes status RSVPs to show on specific event        
+    Promise.all([model.findById(id).populate('hostName'), rsvpModel.where({status: 'Yes', event: id})])
     .then((results) =>
     {
         const [event, rsvps] = results;
         if (event)
         {
-            rsvps.forEach((rsvp) => rsvp.status === 'Yes' ? rsvpCount++ : null)
-            res.render('./event/show', {event, rsvpCount})
+            res.render('./event/show', {event, rsvpCount: rsvps.length})
         }
         else
         {
