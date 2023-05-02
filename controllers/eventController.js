@@ -150,7 +150,11 @@ exports.delete = (req, res, next) =>
                         .catch(err => next(err))
                     })
             })
-            .catch(err => next(err))
+            .catch(err => 
+                {
+                    console.log("eventController.delete forEach error: ", err);
+                    return next(err);
+                })
         }
         else
         {
@@ -159,7 +163,11 @@ exports.delete = (req, res, next) =>
             next(err);
         }
     })
-    .catch(err => next(err))
+    .catch(err => 
+        {
+            console.log("eventController.delete error: ", err);
+            return next(err);
+        })
 };
 
 exports.rsvp = (req, res, next) =>
@@ -185,6 +193,8 @@ exports.rsvp = (req, res, next) =>
     })
     .catch((err) =>
     {
+        console.log("eventController.rsvp error: ");
+        console.log(err);
         return next(err);
     })
 }
